@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>Group 11</title>
+		<meta charset="utf-8" >
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="assets/css/main.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" ></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<div style="background-image: url('/images/ka.jpg'); background-size: cover; background-position: center;">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-gem"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>Vizualization and evaluation of food bank usage and food insecurity in ontrio</h1>
+								<p>Food insecurity is a pressing issue globally, with significant implications for health and well-being.
+									In Ontario, Canada, food insecurity affects many individuals and families, leading to reliance on
+									food bank services for basic needs. To address this challenge, Feed Ontario aims to develop an
+									interactive web map displaying food bank usage data across provincial electoral ridings. This
+									project builds upon previous efforts, leveraging Geographic Information Systems (GIS)
+									technology to visualize food bank usage per capita and demographic information. The project
+									intends to give the public and policymakers insights into regional differences in food insecurity
+									through data pre-processing, visualization, spatial analysis, and customization techniques. This
+									report outlines the data acquisition, preprocessing, spatial analysis, and visualization methods
+									employed to analyze food insecurity and food bank usage across Ontario. Feed Ontario's postal
+									code data was geocoded and aggregated to the provincial riding level to protect privacy.</p>
+							
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#intro">INTRODUCTION</a></li>
+								<li><a href="#problem">METHODOLOGY</a></li>
+								<li><a href="#methods">RESULTS</a></li>
+								<li><a href="#about">Products</a></li>
+								<li><a href="#team">TEAM</a></li>
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+				</div>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="intro">
+								<h2 class="major">Introduction</h2>
+								<span class="image main"><img src="images/fo2.gif" alt="" ></span>
+								<p>In Ontario, food insecurity is a severe problem since many people and families rely on food bank services to meet their basic needs. Effective policymaking and resource allocation depend on an understanding of the demographic characteristics that underlie the regional distribution of food bank use. In the project, we aim to develop an interactive web map displaying the latest food bank usage data in Ontario for public access, organized according to provincial electoral riding boundaries. The goal is to focus on the regional variations in food insecurity in Ontario by displaying the amount of food banks used per person.</p>
+							</article>
+
+						<!-- PS -->
+							<article id="problem">
+								<h2 class="major">METHODOLOGY</h2>
+								<h3>PROJECT WORKFLOW</h3>
+									<p>The project adopted the agile project management method. Agile development was an iterative software development process that prioritized short term outputs that were modified over time in response to client feedback. Over the project course, a substantial quantity of client input was obtained, enabling the team to adjust to changes and involve the client’s requirements in the decision-making process.</p>
+									<span class="image main"><img src="images/wf1.jpg" alt="" ></span>
+								<h3>Data Pre-Processing </h3>
+									<p>Geocoding is the process of converting addresses into geographic coordinates, allowing them to
+										be positioned on a map. This process was accomplished using ArcGIS Pro. To achieve this, a
+										reference layer with a 6-digit postal code shape file across Ontario, obtained from Scholars
+										Geoportal, was provided as a reference layer to create the locator.
+										The "LDU" role in the Create Locator geo-processing tool required mandatory FSA (Forward
+										Sortation Area) and LDU (Local Delivery Unit) fields. This necessitated splitting the 6-digit postal
+										code field into the first 3 digits (FSA) and the last 3 digits (LDU). The Add Fields and Calculate
+										Fields tools were used, with the sample expression “!POSTALCODE![:3]” to extract the first three
+										digits of the postal codes, creating two new fields: FSA and LDU.
+										The criteria were imported into ArcGIS Pro as five separate tables. The Geocode Addresses tool
+										utilized the previously created locator and geocoded the five criteria into x-y coordinates based on
+										the postal codes field. This process successfully converted the tables into point feature classes.</p>
+										<span class="image main"><img src="images/data.jpg" alt="" ></span>
+										 
+								<p>After importing the data in ArcGIS Pro, the projection was adjusted to Lambert Conformal Conic
+									projection. To facilitate a more accurate analysis of food insecurity through Multi Decision Criteria Analysis, we partitioned the Ontario province into
+									Northern and Southern Ontario. This division was essential because the population was not
+									uniformly distributed in the two regions, particularly with the southern section being highly dense.
+									The northern part of Ontario comprised 9 electoral ridings, while the southern part comprised 112
+									federal ridings.</p> 
+	
+												
+								<h3>Spatial Analysis of AHP MCDA for Food Insecurity</h3>
+									<p>The purpose of this spatial analysis was to identify the area prone to hunger and food insecurity.
+										After importing the factors in ArcGIS Pro, we first divided the Study area into northern and
+										southern regions. Secondly, we created raster surface of all five factors using polygon to raster
+										tool. Subsequently, we categorized the data into a 1 – 9 Analytic Hierarchy Process (AHP) schema
+										with 1 being the least suitable and 9 being the most suitable conditions, for both the Northern and
+										Southern Ontario (figure 5). By using a natural break method, the criteria were divided into nine
+										classes, and the results were rounded up. These suitability ratings were coded to reflect the relative
+										suitability within each criterion. Steps involve in the spatial analysis are polygon to raster tool, reclassify tool, Analytic Hierarchy Process (AHP) pairwise comparison, Weighted Overlay, calculate field.</p>
+										<span class="image main"><img src="images/data.jpg" alt="" ></span>
+										<p>Our statistical analysis focused on identifying the electoral ridings with the highest and lowest per
+											capita food bank use in 2021 and 2023 among a total of 124 ridings. Additionally, we identified
+											the ridings with the total population and the highest and lowest population in 2021 and 2023. We
+											also identified the highest and lowest of the Ontario Works Percentages received in 124 electoral
+											ridings for the years 2021 and 2023.</p>
+										<p>We calculated for 124 Ontario electoral ridings the average food bank use per capita and the
+											Ontario Works of 2021 and 2023. Additionally, we computed the percentage increases and
+											decreases of the average Ontario Works percentage over the two years from 2021 to 2023.
+											Furthermore, we computed the population growth percentage from 2021 to 2023.</p>
+										 
+								<h3>Web Development and Enterprise Technology</h3>
+									<p>Due to our client's lack of an ArcGIS Pro account, we utilized our own account instead.
+										Subsequently, we will proceed to transfer all the files to our client's ArcGIS account using ArcGIS
+										Online Assistant.
+										Upon conducting a spatial analysis of food bank utilization per capita in the years 2021 and 2023
+										using ArcGIS Pro, Initially, we transferred the web layer from ArcGIS Pro to our Fleming ArcGIS
+										Online account.</p>
+
+								
+							</article>
+						
+						<!-- Methods -->
+							<article id="methods">
+								<h2 class="major">results</h2>
+								<p>Our project adopted a multifaceted approach by creating web maps, experience builder and story maps to effectively address our client's need. </p>
+								<h3>Spatial Analyis</h3>
+								<p>Follwing are the list of output from Multi Criteria Decision Analysis</p>
+							    <span class="image main"><img src="images/ns.gif" alt="" ></span>
+								<span class="image main"><img src="images/ss.gif" alt="" ></span>
+								<span class="image main"><img src="images/os.gif" alt="" ></span>
+								<h3>Statistical Analysis</h3>
+								<p>Follwing are the list of output from Statistical Analysis</p>
+								<span class="image main"><img src="images/2021o.gif" alt="" ></span>
+								<span class="image main"><img src="images/2023o.gif" alt="" ></span>
+								 							
+								<!-- <h4>Visualization</h4> -->
+							    
+									<!-- <span class="image main"><img src="images/Masking.PNG" alt="" ></span> -->
+								
+							</article>
+						
+						<!-- About -->
+						<article id="about">
+							<h2 class="major">Products</h2>
+							<h3> Experience Builder</h3>
+							<p> <a href="https://experience.arcgis.com/experience/836e7625d9554aa8911ee58d64c41009" target="_blank">Link to the Experience Builder</a></p>
+							<span class="image main"><img src="images/EB.gif" alt=""></span>
+							<p>An ArcGIS Experience Builder page was developed according to the client's requirements for showcasing on the official Feed Ontario website. The webpage included a main page and a user manual page, both formatted in accordance with the Feed Ontario brand guide provided by the client. The logo, colors, style, typography, and other elements strictly adhered to these guidelines</p>
+							<h3 class="major">Statistical Analysis Story Map</a></h3>
+							<p> <a href="https://storymaps.arcgis.com/stories/9def7d8d74b84284a89cbf637bf16b65" target="_blank">Link to the Statistical Analysis Story Map</a></p>
+							<span class="image main"><img src="images/Stat.gif" alt=""></span>
+							<p> The primary goal of this project was to utilize the functionalities of ArcGIS Story Maps to visually represent and convey statistical information regarding the per capita usage of food banks in 2021 and 2023. Story Maps provided an interactive and captivating platform for presenting complex data. It allowed stakeholders to analyse patterns, pinpointed areas with significant requirements, and facilitated decision-making based on data. A chronological Story Map Journal was created using ArcGIS Story Map tools to present the analysis. Each section provided a detailed analysis of a particular year for the entire province of Ontario, as well as separately for Northern Ontario and Southern Ontario. This allowed for precise comparisons to be made between the years 2021 and 2023.
+							</p>
+							<h3 class="major">Spatial Analysis Story Map</a></h3>
+							<p> <a href="https://storymaps.arcgis.com/stories/9def7d8d74b84284a89cbf637bf16b65" target="_blank">Link to the Statistical Analysis Story Map</a></p>
+							<span class="image main"><img src="images/ssa.gif" alt=""></span>
+							 
+							<p> ArcGIS Story Map, developed by ESRI, was a versatile platform designed for users to craft engaging narrative using maps, text, multimedia content, and various other elements. Story Maps offered an engaging and interactive way to display complicated data, enabling stakeholders to look for trends, identify areas that need attention and facilitate decision-making. In our application of ArcGIS Story Map, we utilized it to showcase the food insecurity across Ontario at the federal riding level. We demonstrated our analysis process, starting from the introduction to the methodology used, including data acquisition for each criterion. The story Map would narrate the audience through the AHP MCDA Spatial Analysis process and produce a distinct chronological order. Stakeholders could follow the decision-making process from the beginning data collection to the end results by following the steps of the analysis in order.
+							</p>
+							<a href="" target="_blank"></a>
+						</article>
+                        
+						<!-- Team -->
+								 <!-- Contact -->
+							 <article id="team">
+    								<h2 class="major">Team</h2>
+    								<div class="team-member">
+        								<div class="member-info">
+            							
+        </div>
+        							<div class="member-info">
+            						<img src="images/v.jpeg" alt="Team Member 2">
+            						<div class="member-description">
+                					<h3>Qianhui Hong</h3>
+                					<p>Qianhui holds a Bachelor's degree in biology and environmental science from McMaster University, complemented by a concurrent certificate in GIS. 
+								Furthering her expertise, she enrolled in the Application Specialist program at Fleming College, honing more skills in GIS, including web development, cartography, programming, and database management. 
+								Her passion lies in environmental monitoring, management, and conservation, which she seamlessly integrates with her newfound proficiency.</p>
+								    <p>Email:venusqh123@hotmail.com</p>
+							</div>
+        </div>
+									<div class="member-info">
+            						<img src="images/kabir.jpg" alt="Team Member 1">
+            						<div class="member-description">
+               						<h3>Yumkhaibam Kabir Ahmad</h3>
+                					<p>Passionate about leveraging Geographic Information Systems (GIS) to understand spatial patterns, solve complex problems, and make informed decisions. With a  foundation in GIS principles and techniques, coupled with hands-on experience in data analysis, mapping,spatial modeling, and Web Technology, I bring a dynamic approach to geographical information management.</p>
+                                    <p>Email:kabirahamad698@gmail.com</p>
+								</div>
+			</div>
+           							 <div class="member-info">
+									<img src="images/Simon.jpg" alt="Team Member 1">
+									<div class="member-description">
+									<h3>Simon Pariyar</h3>
+									<p>Simon Pariyar is presently pursuing studies in the Geographic Information Systems: Cartographic Specialist program at Sir Sandford Fleming College – School of Environmental and Natural Resource Sciences. He holds a Bachelor's degree in Agricultural Engineering, where his introduction to GIS occurred during his final year project thesis, which focused on visualizing groundwater variability. Subsequently, in his professional endeavors at an Engineering firm called Ink Consult Pvt. Ltd, he gained extensive exposure to the field of Spatial Analysis and Mapping. Simon considers the knowledge and skills acquired through his current course as a significant milestone in his career progression.
+</p>
+                                    <p>Email:cmeepeter@gmail.com</p>
+				</div>
+    </div>
+	</div>
+</article>
+						<!-- Contact Section -->
+								<a href="#Contact" class="clickable-section">
+									 
+								</a>
+								
+
+
+					</div>
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy;2024 Fleming Feeding Futures . All rights reserved. Unauthorized use or reproduction of this project is prohibited.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

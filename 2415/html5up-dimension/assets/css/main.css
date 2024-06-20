@@ -1108,10 +1108,25 @@ input, select, textarea {
 			border: solid 1px #ffffff;
 			border-radius: 100%;
 		}
+		.logo {
+			width: 200px; /* Example width for the container */
+			height: 150px; /* Example height for the container */
+			display: flex; /* Optional: Use flexbox for alignment */
+			justify-content: center; /* Optional: Center content horizontally */
+			align-items: center; /* Optional: Center content vertically */
+			overflow: hidden; /* Ensure the image does not overflow */
+		}
+		
+		.logo .icon.fa-gem img {
+			max-width: 100%; /* Ensure the image does not exceed container width */
+			max-height: 100%; /* Ensure the image does not exceed container height */
+			display: block; /* Remove default image spacing */
+			margin: auto; /* Center the image horizontally */
+		}
 
-			#header .logo .icon:before {
+/* 			#header .logo .icon:before {
 				font-size: 2rem;
-			}
+			} */
 
 		#header .content {
 			border-style: solid;

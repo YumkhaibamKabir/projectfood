@@ -1124,11 +1124,10 @@ input, select, textarea {
 			display: block;
 			margin: auto;
 		}
-
-			#header .logo .icon fa-gem img {
+/* 			#header .logo .icon fa-gem img {
 				 width: 5px;
 				 height: 5px;
-			}
+			} */
 
 		#header .content {
 			border-style: solid;
